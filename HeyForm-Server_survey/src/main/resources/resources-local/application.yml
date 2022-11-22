@@ -1,0 +1,15 @@
+server:
+  port: 8070
+
+spring:
+  application:
+    name: heyformsurvey
+  profiles:
+    active: prod
+  config:
+    import: optional:configserver:http://localhost:8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
