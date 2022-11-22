@@ -40,6 +40,11 @@ public class DtoService {
         return user.get().getId();
     }
 
+    public Long getUserIdByToken(String user_token){
+//        Object user_account = jwtService.getClaims(jwtService.getClaims(user_token,JWTService.SECRET_KEY),"email");
+
+        return userRepository.findByAccount(user_token).get().getId();
+    }
 
     public boolean tokencheck(String token){
 

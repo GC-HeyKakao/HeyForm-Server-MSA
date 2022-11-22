@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: heyform
+    name: heyformuser
   profiles:
     active: prod
   config:

@@ -50,7 +50,10 @@ public class UserController {
         kakaoService.getInfoByKakaoToken(Kakaotoken);
         return dtoService.deleteJWTToken(Kakaotoken);
     }
-
+    @GetMapping("/user/token/service/{userToken}")
+    public String getTokenByService(@PathVariable String userToken){
+        return String.valueOf(dtoService.getUserIdByToken(userToken));
+    }
 
 
 }
