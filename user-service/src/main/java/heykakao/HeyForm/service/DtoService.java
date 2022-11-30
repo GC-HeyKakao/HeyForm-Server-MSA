@@ -26,9 +26,6 @@ public class DtoService {
         this.userRepository = userRepository;
     }
 
-
-
-
     public Long getIdByEmail(String user_email) {
         Optional<User> user = userRepository.findByEmail(user_email);
         return user.get().getId();
@@ -36,10 +33,13 @@ public class DtoService {
 
     public Long getUserIdByToken(String user_token){
 //        Object user_account = jwtService.getClaims(jwtService.getClaims(user_token,JWTService.SECRET_KEY),"email");
-
         return userRepository.findByAccount(user_token).get().getId();
     }
 
+    public String getUserInfoByUserId(Long user_id){
+        User user = userRepository.getReferenceById(user_id);
+        return user.getAge() + " " + user.getGender();
+    }
 
     public User findUserByAccount(String Account){
         return userRepository.findByAccount(Account).get();

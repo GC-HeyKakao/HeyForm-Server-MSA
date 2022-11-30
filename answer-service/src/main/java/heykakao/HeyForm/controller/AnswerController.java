@@ -41,4 +41,10 @@ public class AnswerController {
         dtoService.saveAnswer(surveyId,userId,answerDtos);
     }
 
+    @GetMapping("/answer/survey/result/{surveyId}")
+//    @ApiOperation(value= "설문조사 분석 결과")
+    public String getTotalAnswer(@PathVariable Long surveyId) throws Exception {
+        return dtoService.statistic(surveyId);
+    }
+
 }

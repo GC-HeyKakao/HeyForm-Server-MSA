@@ -352,7 +352,7 @@ public class DtoService {
 
         try{
             HttpClient client = new DefaultHttpClient();
-            MyHttpGetWithEntity e = new MyHttpGetWithEntity("http://localhost:8080/user/token/service/"+target);
+            MyHttpGetWithEntity e = new MyHttpGetWithEntity("http://localhost:8082/user/token/service/"+target);
             HttpResponse response = client.execute(e);
             System.out.println(response.getStatusLine().getStatusCode());
             if (response.getStatusLine().getStatusCode() == 200) {

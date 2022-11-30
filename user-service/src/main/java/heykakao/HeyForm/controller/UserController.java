@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
+import reactor.util.function.Tuple2;
 
 import java.util.List;
 
@@ -31,8 +32,6 @@ public class UserController {
         return userRepository.findAll();
     }
 
-
-
     @GetMapping("/user/id/{userEmail}")
 //    @ApiOperation(value = "사용자 id 조회", notes = "사용자의 이메일을 반환한다.")
     public Long getIdByEmail(@PathVariable String userEmail){
@@ -45,9 +44,15 @@ public class UserController {
         kakaoService.getInfoByKakaoToken(Kakaotoken);
         return dtoService.deleteJWTToken(Kakaotoken);
     }
+
     @GetMapping("/user/token/service/{userToken}")
     public String getTokenByService(@PathVariable String userToken){
         return String.valueOf(dtoService.getUserIdByToken(userToken));
+    }
+
+    @GetMapping("/user/info/{userId}")
+    public String getInfoByUserId(@PathVariable Long userId){
+        return dtoService.getUserInfoByUserId(userId);
     }
 
 
