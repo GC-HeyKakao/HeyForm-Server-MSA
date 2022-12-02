@@ -21,6 +21,7 @@
       <module name="config-server" target="11" />
       <module name="demo" target="11" />
       <module name="eureka-server" target="11" />
+      <module name="HeyForm-Server-MSA" target="1.8" />
       <module name="survey-service" target="11" />
       <module name="user-service" target="11" />
     </bytecodeTargetLevel>

@@ -1,0 +1,58 @@
+version: '1'
+
+services:
+  config-server:
+    image: parks4754/config-server
+    container_name: config-server
+    mem_limit: 512M
+    ports:
+      - 8888:8888
+
+  eureka-server:
+    image: parks4754/eureka-server
+    container_name: eureka-server
+    mem_limit: 512M
+    depends_on:
+      - config-server
+    ports:
+      - 8761:8761
+
+  user-service:
+    image: parks4754/user-service
+    container_name: user-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - eureka-server
+    ports:
+      - 8082:8082
+
+  survey-service:
+    image: parks4754/survey-service
+    container_name: survey-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - eureka-server
+    ports:
+      - 8081:8081
+
+  answer-service:
+    image: parks4754/answer-service
+    container_name: answer-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - eureka-server
+    ports:
+      - 8080:8080
+
+  api-gateway:
+    image: parks4754/api-gateway
+    container_name: api-gateway
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - eureka-server
+    ports:
+      - 8000:8000
