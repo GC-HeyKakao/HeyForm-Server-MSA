@@ -1,12 +1,13 @@
 spring:
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://172.16.4.35:8888
       name: survey-service
+      #      profile: local
       profile: dev
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: refresh

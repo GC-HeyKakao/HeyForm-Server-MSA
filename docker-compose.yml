@@ -2,57 +2,64 @@ version: '2'
 
 services:
   config-server:
-    image: parks4754/config-server
+    image: dodo133/config-server
     container_name: config-server
     mem_limit: 512M
     ports:
       - 8888:8888
 
   eureka-server:
-    image: parks4754/eureka-server
+    image: dodo133/eureka-server
     container_name: eureka-server
     mem_limit: 512M
-    depends_on:
-      - config-server
     ports:
       - 8761:8761
 
+  api-gateway:
+    image: dodo133/api-gateway
+    container_name: api-gateway
+    mem_limit: 512M
+    depends_on:
+      - eureka-server
+    ports:
+      - 8000:8000
+
+  rabbit-mq:
+    image: rabbitmq
+    container_name: rabbit-mq
+    mem_limit: 512M
+    ports:
+      - 5672:5672
+
   user-service:
-    image: parks4754/user-service
+    image: dodo133/user-service
     container_name: user-service
     mem_limit: 512M
     depends_on:
       - config-server
       - eureka-server
+      - rabbit-mq
     ports:
       - 8082:8082
 
   survey-service:
-    image: parks4754/survey-service
+    image: dodo133/survey-service
     container_name: survey-service
     mem_limit: 512M
     depends_on:
       - config-server
       - eureka-server
+      - rabbit-mq
     ports:
       - 8081:8081
 
   answer-service:
-    image: parks4754/answer-service
+    image: dodo133/answer-service
     container_name: answer-service
     mem_limit: 512M
     depends_on:
       - config-server
       - eureka-server
+      - rabbit-mq
     ports:
       - 8080:8080
-
-  api-gateway:
-    image: parks4754/api-gateway
-    container_name: api-gateway
-    mem_limit: 512M
-    depends_on:
-      - config-server
-      - eureka-server
-    ports:
-      - 8000:8000

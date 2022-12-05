@@ -211,7 +211,7 @@ public class DtoService {
 
         try{
             HttpClient client = new DefaultHttpClient();
-            MyHttpGetWithEntity e = new MyHttpGetWithEntity("http://localhost:8082/question/"+target);
+            MyHttpGetWithEntity e = new MyHttpGetWithEntity("http://172.16.4.35:8000/question/"+target);
             HttpResponse response = client.execute(e);
             System.out.println(response.getStatusLine().getStatusCode());
             if (response.getStatusLine().getStatusCode() == 200) {
@@ -232,7 +232,7 @@ public class DtoService {
 
         try{
             HttpClient client = new DefaultHttpClient();
-            MyHttpGetWithEntity e = new MyHttpGetWithEntity("http://localhost:8082/user/info/"+target);
+            MyHttpGetWithEntity e = new MyHttpGetWithEntity("http://172.16.4.35:8000/user/info/"+target);
             HttpResponse response = client.execute(e);
             System.out.println(response.getStatusLine().getStatusCode());
             if (response.getStatusLine().getStatusCode() == 200) {

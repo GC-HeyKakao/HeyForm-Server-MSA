@@ -19,29 +19,29 @@ public class AnswerController {
 
     @Autowired
     DtoService dtoService;
-    @GetMapping("/answer")
+    @GetMapping("/all")
     public List<Answer> getAllAnswer(){
         return answerRepository.findAll();
     }
 
-    @GetMapping("/answer/survey/{surveyId}")
+    @GetMapping("/survey/{surveyId}")
 //    @ApiOperation(value = "설문조사 답변 조회", notes = "설문조사 id로 모든 답변 조회")
     public List<AnswerDto> getAnswersBySurveyId(@PathVariable Long surveyId){
         return dtoService.getAnswersBySurveyId(surveyId);
     }
 
-    @GetMapping("/answer/user/{userId}")
+    @GetMapping("/user/{userId}")
 //    @ApiOperation(value = "설문조사 유저 답변 조회", notes = "user_id로 모든 답변 조회")
     public List<AnswerDto> getAnswersByUserId(@PathVariable Long userId){
         return  dtoService.getAnswerDtosByUserId(userId);
     }
 
-    @PostMapping("/answer/{userId}")
+    @PostMapping("/{userId}")
     public void saveAnswerByUserId(@RequestParam Long surveyId, @PathVariable Long userId, @RequestBody List<AnswerDto> answerDtos){
         dtoService.saveAnswer(surveyId,userId,answerDtos);
     }
 
-    @GetMapping("/answer/survey/result/{surveyId}")
+    @GetMapping("/survey/result/{surveyId}")
 //    @ApiOperation(value= "설문조사 분석 결과")
     public String getTotalAnswer(@PathVariable Long surveyId) throws Exception {
         return dtoService.statistic(surveyId);

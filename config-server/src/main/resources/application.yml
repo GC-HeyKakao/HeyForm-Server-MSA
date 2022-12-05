@@ -15,8 +15,8 @@ spring:
           default-label: main
           ignore-local-ssh-settings: true
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: busrefresh
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: busrefresh
