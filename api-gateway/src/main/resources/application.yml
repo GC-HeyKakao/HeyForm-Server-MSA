@@ -11,13 +11,6 @@ spring:
         locator:
           enabled: true
       routes:
-#        - id: openapi
-#          uri: http://172.16.4.35:${server.port}
-#          predicates:
-#            - Path=/v3/api-docs/**
-#          filters:
-#            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-doc
-
         - id: answer-service
 #          uri: http://localhost:8080 # 포워딩할 주소, http://localhost:8000/answer 로 들어오면 http://localhost:64412 로 포워딩
           uri: lb://ANSWER-SERVICE
@@ -43,6 +36,12 @@ spring:
           filters:
             - RewritePath=/user/?(?<segment>.*), /$\{segment}
 
+        - id: openapi
+          uri: http://localhost:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-doc
 
 
 eureka:
@@ -53,3 +52,13 @@ eureka:
       defaultZone : http://admin:admin@${eureka.instance.hostname}:8761/eureka/
   instance:
     hostname: 172.16.4.35
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: user
+        url: /v3/api-docs/user
+      - name: survey
+        url: /v3/api-docs/survey
+      - name: answer
+        url: /v3/api-docs/answer

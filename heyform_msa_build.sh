@@ -7,8 +7,9 @@ fi
 
 USER=$1
 
-#list="config-server eureka-server api-gateway user-service survey-service answer-service"
-list="survey-service"
+list="config-server eureka-server api-gateway user-service survey-service answer-service"
+#list="user-service survey-service answer-service"
+#list="api-gateway"
 for IMG in ${list}
 do
   echo "===================================================================================================="
