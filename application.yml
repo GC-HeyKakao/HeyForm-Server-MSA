@@ -1,20 +1,19 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: heyform
-  namespace: argocd
+  name: mynginx
 spec:
-  project: default
-  source:
-    repoURL: https://github.com/GC-HeyKakao/HeyForm-Server-MSA.git
-    targetRevision: HEAD
-    path: getting-started/k8s
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-    automated:
-      selfHeal: true
-      prune: true
+  replicas: 1
+  selector:
+    matchLabels:
+      run: mynginx
+  template:
+    metadata:
+      labels:
+        run: mynginx
+    spec:
+      containers:
+      - image: parks4754/eureka-server
+        name: eurekaserver
+        ports:
+        - containerPort: 80
