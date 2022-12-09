@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/umi0410/declarative-argocd.git
+    repoURL: https://github.com/GC-HeyKakao/HeyForm-Server-MSA.git
     targetRevision: HEAD
     path: getting-started/k8s
   destination:
