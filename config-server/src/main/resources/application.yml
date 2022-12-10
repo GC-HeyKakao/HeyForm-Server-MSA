@@ -11,7 +11,7 @@ spring:
         git:
           uri: https://github.com/GC-HeyKakao/HeyForm-Config.git
           username: parkchanbin54
-          password: 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
+          password: 
           default-label: main
           ignore-local-ssh-settings: true
 
